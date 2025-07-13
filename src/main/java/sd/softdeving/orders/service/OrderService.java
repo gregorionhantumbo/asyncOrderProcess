@@ -28,28 +28,42 @@ public class OrderService {
         Order order = new Order();
         order.setCustomer(dto.getCustomer());
 
+        // Fetch all products by IDs from the DTO
         List<Product> products = productRepository.findAllById(dto.getProductIds());
         order.setProductList(products);
 
+        // Build quantity map only for existing products
         Map<Product, Integer> quantityMap = new HashMap<>();
         for (Product product : products) {
             Integer quantity = dto.getQuantity().get(product.getProductId());
-            if (quantity != null) {
+            if (quantity != null && quantity > 0) { // Ensure quantity is positive
                 quantityMap.put(product, quantity);
+            } else {
+                log.warn("Invalid or null quantity for product id={}", product.getProductId());
             }
         }
-
         order.setQuantity(quantityMap);
 
         return orderRepository.save(order);
     }
 
     public Order getOrder(String orderId) {
-        return orderRepository.findById(Long.valueOf(orderId)).orElse(null);
+        try {
+            Long id = Long.valueOf(orderId);
+            return orderRepository.findById(id).orElse(null);
+        } catch (NumberFormatException e) {
+            log.error("Invalid order ID: {}", orderId);
+            return null;
+        }
     }
 
     public void deleteOrder(String orderId) {
-        orderRepository.deleteById(Long.valueOf(orderId));
+        try {
+            Long id = Long.valueOf(orderId);
+            orderRepository.deleteById(id);
+        } catch (NumberFormatException e) {
+            log.error("Invalid order ID for deletion: {}", orderId);
+        }
     }
 
     @Async("threadPoolTaskExecutor")

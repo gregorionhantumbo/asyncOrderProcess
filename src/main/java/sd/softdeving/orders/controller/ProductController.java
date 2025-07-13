@@ -16,7 +16,7 @@ public class ProductController {
     private ProductService productService;
 
     @PostMapping
-    public ResponseEntity<?> create(@RequestBody Product product) {
+    public ResponseEntity<Product> create(@RequestBody Product product) {
         Product saved = productService.save(product);
         return ResponseEntity.ok(saved);
     }
@@ -27,13 +27,13 @@ public class ProductController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> getById(@PathVariable Long id) {
+    public ResponseEntity<Product> getById(@PathVariable Long id) {
         Product found = productService.findById(id);
         return found != null ? ResponseEntity.ok(found) : ResponseEntity.notFound().build();
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> delete(@PathVariable Long id) {
+    public ResponseEntity<String> delete(@PathVariable Long id) {
         productService.deleteById(id);
         return ResponseEntity.ok("Product deleted successfully.");
     }
