@@ -40,3 +40,11 @@
 2025-07-13 12:04:25.909 [http-nio-8080-exec-4] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
 2025-07-13 12:07:13.386 [OrderProcessing1] INFO  s.s.orders.service.OrderService - Processing order 1 on thread OrderProcessing1
 2025-07-13 12:07:16.386 [OrderProcessing1] INFO  s.s.orders.service.OrderService - Order 1 processed.
+2025-07-13 12:11:33.547 [OrderProcessing2] INFO  s.s.orders.service.OrderService - Processing order 2 on thread OrderProcessing2
+2025-07-13 12:11:36.547 [OrderProcessing2] INFO  s.s.orders.service.OrderService - Order 2 processed.
+2025-07-13 12:11:43.751 [OrderProcessing3] INFO  s.s.orders.service.OrderService - Processing order 3 on thread OrderProcessing3
+2025-07-13 12:11:46.752 [OrderProcessing3] INFO  s.s.orders.service.OrderService - Order 3 processed.
+2025-07-13 12:11:47.941 [OrderProcessing4] INFO  s.s.orders.service.OrderService - Processing order 4 on thread OrderProcessing4
+2025-07-13 12:11:50.772 [OrderProcessing5] INFO  s.s.orders.service.OrderService - Processing order 5 on thread OrderProcessing5
+2025-07-13 12:11:50.942 [OrderProcessing4] INFO  s.s.orders.service.OrderService - Order 4 processed.
+2025-07-13 12:11:53.773 [OrderProcessing5] INFO  s.s.orders.service.OrderService - Order 5 processed.
